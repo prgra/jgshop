@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html>
-  <head><title><%= title %></title></head>
+  <head>
+	<link rel="stylesheet" type="text/css" href="/semantic/semantic.min.css">
+    <script src="/jquery-2.1.4.min.js"></script>
+	<script src="/semantic/semantic.min.js"></script>
+	<meta charset="utf-8" />
+  	<title><%= title %></title>
+  </head>
   <body><%= content %></body>
 </html>
