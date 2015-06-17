@@ -4,16 +4,17 @@
 
 <div class="ui secondary segment">
   <div class="ui inverted segment">
-    <div class="ui search">
+    <div class="ui category search">
       <div class="ui icon input">
         <input class="prompt" placeholder="Search" type="text">
-        <i class="search icon"></i>
+        <i class="search circular icon"></i>
       </div>
       <div class="results"></div>
     </div>
   </div>
 </div>
-
+<div class="ui secondary segment">
+</div>
 <script>
 var
    content = [
@@ -32,10 +33,10 @@ var
 ;
 $('.ui.search')
   .search({
-    source : content,
-    searchFields   : [
-      'title'
-    ],
+    apiSettings: {
+        url: '/search/{query}'
+      },
+    type: 'category',
     searchFullText: false
   })
 ;

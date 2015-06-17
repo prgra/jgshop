@@ -12,7 +12,8 @@ sub startup {
   my $r = $self->routes;
 
   # Normal route to controller
-  $r->get('/')->to('JGShop#main');	
+  $r->get('/')->to('JGShop#main');
+  $r->get('/search/:q')->to('JGShop#search');	
 }
 
 1;
