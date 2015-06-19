@@ -1,4 +1,100 @@
 % layout 'default';
-% title 'JGShop';
+% title 'JGShop '.$item->{name};
 %= include "menu";
-hello
+
+<div class="ui fluid form segment tertiary">
+  <div class="fields">
+    <div class="five wide field ">
+      <div class="ui segment secondary ">
+        %my $size='large';
+        %if ($item->{type_id}==4) {$size='small';} 
+        <img class="ui centered circular image" src="/www/<%=$item->{type}%>/media/<%=$size%>/<%=$item->{img}%>">
+        <h2 class="ui header centered">
+          <%=$item->{name} %>
+          <h4 class="ui grey header">
+            <%=$item->{descr} %>
+          </h4>
+        </h2>
+      </div>
+      <table class="ui table celled striped  ">
+        <tr>
+          <th>spec</th><th>val</th>
+        </tr>
+        %foreach my $l (@$spec) {
+        <tr>
+          <td><%= $l->{name}%></td><td><%= $l->{value}%></td>
+        </tr>
+        %}
+      </table>
+    </div>
+    <div class="eight wide field">
+      <table class="ui table celled striped">
+        <tr>
+          <th>Station</th><th>amount</th><th>price</th><th>nedded</th>
+        </tr>
+        %foreach my $l (@$cont) {
+        <tr>
+          <td><%= $l->{station}%></td>
+          <td><%= $l->{cc}%></td>
+          <td><%= $l->{price}%></td>
+          %if ($l->{need} ==0) {
+          <td class="negative">
+            %} 
+            %else {
+            <td class="positive" onClick="$('#o<%=$l->{sid}%>').toggle();">
+
+              <%=$l->{need}%>
+              %if (defined $chash->{$item->{id}}) {
+
+                <div class="ui popup" id="o<%=$l->{sid}%>">
+                  <div class="ui four column relaxed equal height divided grid">
+                    <div class="ui column">
+                      <h4 class="ui header">Produce</h4>
+                      <div class="ui link list">
+                        %foreach my $k (keys %$chash->{$item->{id}}) {
+                        <a class="item"><%=$k%></a>
+                        %}
+                      </div>
+                    </div>
+                  </div>
+                </div>         
+              %}
+
+
+              %} 
+
+
+            </td>
+          </tr>
+          %}
+        </table> 
+      </div>
+      <div class="three wide field">
+        <table class="ui table celled striped ">
+          <tr>
+            <td colspan="2" class="centered">Prod</td>
+          </tr>
+          <tr>
+            <th>Station</th><th>count</th>
+          </tr>
+          %foreach my $l (@$prod) {
+          <tr>
+            <td><%= $l->{name}%></td><td><%= $l->{cnt}%></td>
+          </tr>
+          %}
+        </table>
+      </div>
+    </div>  
+  </div>  
+  <script>
+  
+  $('.popup').popup({
+    inline   : true,
+    hoverable: true,
+    position : 'bottom left',
+    delay: {
+      show: 300,
+      hide: 800
+    }
+  });
+  </script>
