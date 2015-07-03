@@ -32,7 +32,7 @@
         <tr>
           <th>Station</th><th>amount</th><th>price</th><th>nedded</th>
         </tr>
-        %foreach my $l (@$cont) {
+        %foreach my $l (sort {$a->{price} <=> $b->{price} } @$cont) {
         <tr>
           <td><%= $l->{station}%></td>
           <td><%= $l->{cc}%></td>
